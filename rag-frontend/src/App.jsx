@@ -19,7 +19,8 @@ function App() {
 
     try {
       // Calling your live local FastAPI backend server
-      const response = await fetch('http://localhost:8000/ask', {
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'; // Default to localhost if not set
+      const response = await fetch(`${baseUrl}/ask`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: currentInput }),
